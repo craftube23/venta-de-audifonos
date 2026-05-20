@@ -1,14 +1,51 @@
-// Esperamos a que todo el HTML de la página esté cargado
 document.addEventListener("DOMContentLoaded", () => {
-    const caja = document.getElementById("cajaAudifonos");
 
-    // 1. Agregamos la animación de inicio (aparecer desde abajo)
+    const caja = document.getElementById("cajaAudifonos");
     caja.classList.add("animacion-inicio");
 
-    // 2. Escuchamos cuándo termina esa animación de inicio
-        document.addEventListener("DOMContentLoaded", () => {
-        const caja = document.getElementById("cajaAudifonos");
+    const audioInicio = document.getElementById("audioInicio");
+    const musicaF = document.getElementById("musicaFondo");
+    const boton = document.querySelector(".btn-interes");
 
-        caja.classList.add("animacion-inicio");
-    });
+    // SONIDO AL ENTRAR O RECARGAR
+    if (audioInicio) {
+
+        audioInicio.volume = 0.3;
+
+        const iniciarAudio = () => {
+
+            audioInicio.play()
+                .then(() => {
+                    console.log("Audio iniciado");
+                })
+                .catch(error => {
+                    console.log("Autoplay bloqueado:", error);
+                });
+
+            // Quita el evento después de usarlo
+            document.removeEventListener("click", iniciarAudio);
+        };
+
+        // Espera el primer clic del usuario
+        document.addEventListener("click", iniciarAudio);
+    }
+
+    // SONIDO DEL BOTÓN
+    if (musicaF && boton) {
+
+        boton.addEventListener("click", (e) => {
+
+            e.preventDefault();
+
+            musicaF.volume = 0.3;
+
+            musicaF.play();
+
+            setTimeout(() => {
+                window.location.href = boton.href;
+            }, 4000);
+
+        });
+    }
+
 });
