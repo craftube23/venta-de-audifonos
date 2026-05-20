@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Cambia 'hidden' por 'auto' o 'visible' para permitir el scroll vertical */
+    overflow-y: visible; 
+    position: relative;
+    background-color: #0b0b0f;
+}
+
+/* El contenedor principal de la vista de detalle */
+.contenedor-detalle {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide la pantalla en dos mitades exactas */
+    min-height: 100vh;
+    background-color: #0b0b0f;
+    color: white;
+}
+
+/* --- LA MAGIA ESTÁ AQUÍ --- */
+.columna-izquierda {
+    position: sticky;
+    top: 0;                /* Se pega al tope de la pantalla */
+    height: 100vh;         /* Ocupa todo el alto visible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;      /* Evita que esta columna cree barras de scroll */
+}
+
+.imagen-fija img {
+    max-width: 90%;
+    height: auto;
+    object-fit: contain;
+    /* Aquí puedes meterle la animación de inicio que quieras para la imagen */
+}
+
+/* Columna derecha con scroll normal */
+.columna-derecha {
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Espacio generoso entre cada estadística */
+}
+
+/* Estilos para las tarjetas de estadísticas */
+.tarjeta-stats {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.tarjeta-stats h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #006eff; /* Un azul neón para resaltar */
+}
+
+.tarjeta-stats p {
+    color: #a0a0ab;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Barras visuales para las especificaciones */
+.barra-progreso {
+    background: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.barra-progreso .llenado {
+    background: linear-gradient(90deg, #006eff, #00ffcc);
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* --- ANIMACIÓN 1: FLOTAR (Siempre Activa) --- */
+.contenedor-flotante {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Aplicamos la animación de flotar a todo el contenedor */
+    animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0); /* Posición inicial */
+    }
+    50% {
+        transform: translateY(-15px); /* Se eleva un poco */
+    }
+}
+
+/* --- ANIMACIÓN 2: DESVANECER (Controlada por JS) --- */
+.fade-suave {
+    /* Estado por defecto: Visible y con transición */
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Esta clase la pondrá y quitará el JS */
+.ocultar-fade {
+    opacity: 0;
+}
+
+/* Estilos de imagen generales */
+#imagenAudifonos {
+    max-width: 90%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* --- RESPONSIVE DESIGN (Para Celulares y Tablets) --- */
+@media (max-width: 768px) {
+    
+    .contenedor-detalle {
+        /* Cambiamos de 2 columnas a 1 sola columna */
+        grid-template-columns: 1fr; 
+    }
+
+    .columna-izquierda {
+        position: relative; 
+        top: initial;
+        
+        /* Forzamos un alto cómodo en celular para que la imagen respire */
+        height: 60vh; 
+        
+        /* Flexbox vuelve a tomar el control para centrar todo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        padding: 20px;
+    }
+
+    .imagen-fija img {
+        /* Nos aseguramos de que no desborde ni se estire feo */
+        max-width: 100%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+
+    .cambio-suave {
+    transition: opacity 0.5s ease-in-out;
+    }
+
+    .ocultar-imagen {
+        opacity: 0;
+    }
+
+
+    .columna-derecha {
+        /* Un pequeño ajuste de margen arriba para que no se pegue a la imagen */
+        padding: 10px 20px 40px 20px;
+        gap: 30px;
+    }
+
+    .tarjeta-stats {
+        padding: 25px 20px; /* Tarjetas un poco más compactas */
+    }
+
+    .tarjeta-stats h2 {
+        font-size: 22px; /* Textos un poco más pequeños para pantallas móviles */
+    }
+}
+

@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden; 
+    position: relative;
+    background-color: #0b0b0f; 
+}
+
+
+.fondo-bajo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a1a2e 0%, #0b0b0f 100%);
+    z-index: 1; /* Se queda atrás */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 2; /* Se posiciona por encima del fondo */
+}
+
+/* Estado inicial de la caja (oculta antes de que JS actúe) */
+.caja-centro {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    opacity: 0; 
+    transform: translateY(50px);
+}
+
+.caja-centro img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* --- ANIMACIONES CSS --- */
+
+/* 1. Esta clase se la pondremos con JS para la animación de inicio */
+.animacion-inicio {
+    animation: 
+        aparecer 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+        elevar 1.5s ease-in-out 1.2s infinite alternate; 
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* 2. Esta clase se activará DESPUÉS de que termine la primera para que flote/se eleve */
+.animacion-elevar {
+    animation: elevar 4s ease-in-out infinite alternate;
+}
+@keyframes elevar {
+    from {
+        transform: translateY(0);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    to {
+        transform: translateY(-15px);
+        box-shadow: 0 35px 60px rgba(0, 110, 255, 0.25);
+    }
+}
+
+/* Estilos rápidos para que los textos se vean bien */
+.tag {
+    background: #006eff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+h1 { margin: 20px 0 10px 0; font-size: 32px; }
+p { color: #a0a0ab; margin-bottom: 30px; font-size: 15px; line-height: 1.5; }
+.btn-interes {
+    background: white; border: none; padding: 12px 24px;
+    border-radius: 10px; font-weight: bold; cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none; 
+    display: inline-block;
+}
+.btn-interes:hover {
+    background: #006eff;
+    color: white;
+}
+
+/* --- RESPONSIVE PARA LA PÁGINA DE INICIO (Celulares) --- */
+@media (max-width: 480px) {
+    
+    .container {
+        padding: 20px; /* Evita que la caja toque los bordes físicos de la pantalla */
+    }
+
+    .caja-centro {
+        width: 100%;       /* Hace que la caja use todo el ancho disponible del celular */
+        padding: 30px 20px; /* Reducimos el espaciado interno para ganar espacio */
+        border-radius: 15px; /* Bordes un pelo más finos para que se vea más estilizado */
+    }
+
+    h1 {
+        font-size: 26px;    /* Achicamos un poco el título para que no salte en tantas líneas */
+        margin: 15px 0 8px 0;
+    }
+
+    p {
+        font-size: 14px;    /* Texto un poco más legible para pantallas pequeñas */
+        margin-bottom: 20px;
+    }
+
+    .btn-interes {
+        width: 100%;        /* El botón a lo ancho del celular es mucho más fácil de tocar con el pulgar */
+        padding: 14px;      /* Un pelo más alto para mejorar la ergonomía */
+    }
+}
