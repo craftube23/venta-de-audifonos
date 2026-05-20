@@ -6,16 +6,15 @@
 }
 
 body {
-    /* Cambia 'hidden' por 'auto' o 'visible' para permitir el scroll vertical */
+    
     overflow-y: visible; 
     position: relative;
     background-color: #0b0b0f;
 }
 
-/* El contenedor principal de la vista de detalle */
 .contenedor-detalle {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide la pantalla en dos mitades exactas */
+    grid-template-columns: 1fr 1fr; 
     min-height: 100vh;
     background-color: #0b0b0f;
     color: white;
@@ -24,19 +23,18 @@ body {
 /* --- LA MAGIA ESTÁ AQUÍ --- */
 .columna-izquierda {
     position: sticky;
-    top: 0;                /* Se pega al tope de la pantalla */
-    height: 100vh;         /* Ocupa todo el alto visible */
+    top: 0;                
+    height: 100vh;         
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;      /* Evita que esta columna cree barras de scroll */
+    overflow: hidden;     
 }
 
 .imagen-fija img {
     max-width: 90%;
     height: auto;
     object-fit: contain;
-    /* Aquí puedes meterle la animación de inicio que quieras para la imagen */
 }
 
 /* Columna derecha con scroll normal */
@@ -88,7 +86,6 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* Aplicamos la animación de flotar a todo el contenedor */
     animation: flotar 3s ease-in-out infinite;
 }
 
@@ -108,7 +105,6 @@ body {
     transition: opacity 0.6s ease-in-out;
 }
 
-/* Esta clase la pondrá y quitará el JS */
 .ocultar-fade {
     opacity: 0;
 }
@@ -132,10 +128,8 @@ body {
         position: relative; 
         top: initial;
         
-        /* Forzamos un alto cómodo en celular para que la imagen respire */
         height: 60vh; 
         
-        /* Flexbox vuelve a tomar el control para centrar todo */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -160,7 +154,6 @@ body {
 
 
     .columna-derecha {
-        /* Un pequeño ajuste de margen arriba para que no se pegue a la imagen */
         padding: 10px 20px 40px 20px;
         gap: 30px;
     }

@@ -53,7 +53,6 @@ body {
 
 /* --- ANIMACIONES CSS --- */
 
-/* 1. Esta clase se la pondremos con JS para la animación de inicio */
 .animacion-inicio {
     animation: 
         aparecer 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards,
@@ -68,7 +67,6 @@ body {
     }
 }
 
-/* 2. Esta clase se activará DESPUÉS de que termine la primera para que flote/se eleve */
 .animacion-elevar {
     animation: elevar 4s ease-in-out infinite alternate;
 }
@@ -110,27 +108,27 @@ p { color: #a0a0ab; margin-bottom: 30px; font-size: 15px; line-height: 1.5; }
 @media (max-width: 480px) {
     
     .container {
-        padding: 20px; /* Evita que la caja toque los bordes físicos de la pantalla */
+        padding: 20px; 
     }
 
     .caja-centro {
-        width: 100%;       /* Hace que la caja use todo el ancho disponible del celular */
-        padding: 30px 20px; /* Reducimos el espaciado interno para ganar espacio */
-        border-radius: 15px; /* Bordes un pelo más finos para que se vea más estilizado */
+        width: 100%;       
+        padding: 30px 20px; 
+        border-radius: 15px; 
     }
 
     h1 {
-        font-size: 26px;    /* Achicamos un poco el título para que no salte en tantas líneas */
+        font-size: 26px;   
         margin: 15px 0 8px 0;
     }
 
     p {
-        font-size: 14px;    /* Texto un poco más legible para pantallas pequeñas */
+        font-size: 14px;   
         margin-bottom: 20px;
     }
 
     .btn-interes {
-        width: 100%;        /* El botón a lo ancho del celular es mucho más fácil de tocar con el pulgar */
-        padding: 14px;      /* Un pelo más alto para mejorar la ergonomía */
+        width: 100%;       
+        padding: 14px;      
     }
 }
